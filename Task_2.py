@@ -7,13 +7,15 @@
 # Иван Иванов 1846 года рождения, проживает в городе Москва,
 # email: jackie@gmail.com, телефон: 01005321456
 
+def my_dict(name, birthday, city, mail, telephone):
+    print(f'\n{name} {birthday} года рождения, проживает в городе {city},'
+          f'\nemail: {mail}, телефон: {telephone}')
 
-name = input('Введите Фамилию и Имя: ')
-birthday = int(input('Ваш год рождения полностью:  '))
-city = input('Город где вы проживаете: ')
-mail = input('email: ')
-telephone = int(input('Телефон: '))
 
-result = map(str.lower, [name, birthday, city, mail, telephone])
-print((f'\n {name}, {birthday} года рождения, проживает в городе {city},'
-       f' email: {mail}:, телефон: {telephone}'))
+my_dict(
+    name=input('Введите Фамилию и Имя: '),
+    birthday=int(input('Ваш год рождения полностью:  ')),
+    city=input('Город где вы проживаете: '),
+    mail=input('email: '),
+    telephone=int(input('Телефон: '))
+)
