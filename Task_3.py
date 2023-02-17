@@ -9,10 +9,11 @@ print('Используя функцию sort() \n')
 args = (
     int(input('Введите первый аргумент: ')),
     int(input('Введите второй аргумент: ')),
-    int(input('Введите третий аргумент: ')),
+    int(input('Введите третий аргумент: '))
 )
+
 print(sorted(args, reverse=True))
-args_1 = (sorted(args, reverse=True))
+args_1 = sorted(args, reverse=True)
 
 
 def sum(args_1):
@@ -33,5 +34,5 @@ def my_func(arg_1, arg_2, arg_3):
 my_func(
     int(input('Введите первый аргумент: ')),
     int(input('Введите второй аргумент: ')),
-    int(input('Введите третий аргумент: ')),
+    int(input('Введите третий аргумент: '))
 )
