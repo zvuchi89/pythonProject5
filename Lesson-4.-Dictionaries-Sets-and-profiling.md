@@ -43,16 +43,19 @@ print(my_func(x, y))
 # Иван Иванов 1846 года рождения, проживает в городе Москва,
 # email: jackie@gmail.com, телефон: 01005321456
 
+def my_dict(name, birthday, city, mail, telephone):
+    print(f'\n{name} {birthday} года рождения, проживает в городе {city},'
+          f'\nemail: {mail}, телефон: {telephone}')
 
-name = input('Введите Фамилию и Имя: ')
-birthday = int(input('Ваш год рождения полностью:  '))
-city = input('Город где вы проживаете: ')
-mail = input('email: ')
-telephone = int(input('Телефон: '))
 
-result = map(str.lower, [name, birthday, city, mail, telephone])
-print((f'\n {name}, {birthday} года рождения, проживает в городе {city},'
-       f' email: {mail}:, телефон: {telephone}'))
+my_dict(
+    name=input('Введите Фамилию и Имя: '),
+    birthday=int(input('Ваш год рождения полностью:  ')),
+    city=input('Город где вы проживаете: '),
+    mail=input('email: '),
+    telephone=int(input('Телефон: '))
+)
+
 
 
 
@@ -67,10 +70,11 @@ print('Используя функцию sort() \n')
 args = (
     int(input('Введите первый аргумент: ')),
     int(input('Введите второй аргумент: ')),
-    int(input('Введите третий аргумент: ')),
+    int(input('Введите третий аргумент: '))
 )
+
 print(sorted(args, reverse=True))
-args_1 = (sorted(args, reverse=True))
+args_1 = sorted(args, reverse=True)
 
 
 def sum(args_1):
@@ -79,21 +83,12 @@ def sum(args_1):
 
 print(f'Сумма наибольших двух аргументов: {sum(args_1)} \n')
 
-
 print('Без функции sort() \n')
 
 
 def my_func(arg_1, arg_2, arg_3):
     print(f' \n Сумма наибольших двух аргументов равна: '
           f'{(arg_1 + arg_2 + arg_3) - min([arg_1, arg_2, arg_3])}')
-
-
-my_func(
-    int(input('Введите первый аргумент: ')),
-    int(input('Введите второй аргумент: ')),
-    int(input('Введите третий аргумент: ')),
-)
-
 
 
 # 4. Программа принимает действительное положительное число x
@@ -106,14 +101,17 @@ my_func(
 x = int(input('Введите положительное число: '))
 y = int(input('Введите отрицательное число: '))
 
+
 def my_func(x, y):
-        if y == 0:
-            return 1
-        elif y == 1:
-            return x
-        elif y < 0:
-            return 1 / my_func(x, -y)
-        return x * my_func(x, y - 1)
+    if y == 0:
+        return 1
+    elif y == 1:
+        return x
+    elif y < 0:
+        return 1 / my_func(x, -y)
+    return x * my_func(x, y - 1)
+
+
 print(x * my_func(x, y - 1))
 
 
@@ -123,12 +121,12 @@ print(x * my_func(x, y - 1))
 # с помощью модуля timeit, опишите результат
 
 
-import timeit
+from timeit import timeit
 
 x = int(input('Введите положительное число: '))
 y = int(input('Введите отрицательное число: '))
 
-code_to_test = """
+print(timeit("""
 def my_func(x, y):
         if y == 0:
             return 1
@@ -137,24 +135,22 @@ def my_func(x, y):
         elif y < 0:
             return 1 / my_func(x, -y)
         return x * my_func(x, y - 1)
+        
+""", number=1))
 
-"""
-
-elapsed_time = timeit.timeit(code_to_test, number=100) / 100
-print(elapsed_time)
-
-code_to_test = """
+print(timeit("""
 def my_func( x, y):
-    print(x**y)
-"""
-elapsed_time = timeit.timeit(code_to_test, number=100) / 100
-print(elapsed_time)
+     print(x**y)
+""", number=1))
 
-# Чтобы получить точное время, timeit() выполнит 100 циклов. Поэтому вывод
-# делим на 100, чтобы получить время выполнения только для одного цикла.
-# Результат первого кода = 2.870004391297698e-07 (время выполнения в секундах).
-# Считаю, 3 секунды это много для выполнения данной операции.Результат второго
-# кода составил на 1 секунду меньше = 1.8700025975704192e-07
+print(timeit("""
+def my_func(x, y):
+    print(pow(x, y))
+""", number=1))
 
-#Хотела провести тест и на встроенную функцию pow, но неполучилось. А почему?
-#print(pow(x, y))
+# Полученный результат:
+# Введите положительное число: 2
+# Введите отрицательное число: -2
+# 4.1000021155923605e-06
+# 5.999972927384079e-07
+# 5.999972927384079e-07
