@@ -8,13 +8,15 @@
 x = int(input('Введите положительное число: '))
 y = int(input('Введите отрицательное число: '))
 
-def my_func(x, y):
-        if y == 0:
-            return 1
-        elif y == 1:
-            return x
-        elif y < 0:
-            return 1 / my_func(x, -y)
-        return x * my_func(x, y - 1)
-print(x * my_func(x, y - 1))
 
+def my_func(x, y):
+    if y == 0:
+        return 1
+    elif y == 1:
+        return x
+    elif y < 0:
+        return 1 / my_func(x, -y)
+    return x * my_func(x, y - 1)
+
+
+print(x * my_func(x, y - 1))

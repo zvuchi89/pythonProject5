@@ -2,12 +2,12 @@
 # с помощью модуля timeit, опишите результат
 
 
-import timeit
+from timeit import timeit
 
 x = int(input('Введите положительное число: '))
 y = int(input('Введите отрицательное число: '))
 
-code_to_test = """
+print(timeit("""
 def my_func(x, y):
         if y == 0:
             return 1
@@ -17,25 +17,20 @@ def my_func(x, y):
             return 1 / my_func(x, -y)
         return x * my_func(x, y - 1)
         
-"""
+""", number=1))
 
-elapsed_time = timeit.timeit(code_to_test, number=100) / 100
-print(elapsed_time)
-
-code_to_test = """
+print(timeit("""
 def my_func( x, y):
-    print(x**y)
-"""
-elapsed_time = timeit.timeit(code_to_test, number=100) / 100
-print(elapsed_time)
+     print(x**y)
+""", number=1))
 
-# Чтобы получить точное время, timeit() выполнит 100 циклов. Поэтому вывод
-# делим на 100, чтобы получить время выполнения только для одного цикла.
-# Результат первого кода = 2.870004391297698e-07 (время выполнения в секундах).
-# Считаю, 3 секунды это много для выполнения данной операции.Результат второго
-# кода составил на 1 секунду меньше = 1.8700025975704192e-07
+print(timeit("""
+def my_func(x, y):
+    print(pow(x, y))
+""", number=1))
 
-#Хотела провести тест и на встроенную функцию pow, но неполучилось. А почему?
-#print(pow(x, y))
-
-
+# Полученный результат:
+# Введите положительное число: 2
+# Введите отрицательное число: -2
+# 2.800001311697997e-06
+# 1.0000003385357559e-06
